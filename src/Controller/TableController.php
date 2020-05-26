@@ -7,8 +7,8 @@ use View\View;
 
 class TableController extends AbstractController
 {
-    protected CRUDInterface $table;
-    protected View $view;
+    protected  $table; // CRUDInterface
+    protected  $view; // View
 
     public function __construct(CRUDInterface $table, View $view)
     {
@@ -40,6 +40,40 @@ class TableController extends AbstractController
         if (isset($data['get']['id'])) {
             $this->table->del($data['get']['id']);
         }
+        $this->redirect('?action=show');
+    }
+
+    public function actionShowEdit(array $data)
+    {
+        // print_r($data['get']['id']);
+        $id = $data['get']['id'];
+
+        $viewData = $this->table->get($id)[0];
+
+        unset($viewData['id']); // Del id
+
+        $this
+            ->view
+            ->setTemplate('edit')
+            ->setData([
+                'data' => $viewData,
+                'id' => $id
+            ])
+            ->view();
+
+        // print_r($viewData);
+    }
+
+    public function actionEdit(array $data)
+    {
+        // print_r($data);
+
+        $editData = $data['post'];
+        unset($editData['id']);
+
+        // print_r($editData);
+
+        $this->table->edit($data['post']['id'], $editData);
         $this->redirect('?action=show');
     }
 
