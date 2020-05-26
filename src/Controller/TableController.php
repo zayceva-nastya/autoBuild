@@ -25,5 +25,22 @@ class TableController
             ->setData(['table' => $this->table->get()])
             ->view();
     }
+
+    public function actionAdd(array $data)
+    {
+        $this->table->add($data);  
+        header("Location: ?action=show");
+    }
+
+
+    public function actionDefault()
+    {
+        $this
+            ->view
+            ->setTemplate('default')
+            ->view();
+    }
+
+    
 }
 
