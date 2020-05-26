@@ -5,7 +5,8 @@ foreach ($table as $row) {
     foreach ($row as $value) {
         echo "<td>$value</td>";
     }
-    echo "<td><a href='?action=del&id=$row[id]'>del</a></td>";
+    echo "<td><a href='?action=del&id=$row[id]'>❌</a></td>";
+    echo "<td><a href='?action=showedit&id=$row[id]'>⛏</a></td>";
     echo "</tr>";
 }
 echo '</table>';
