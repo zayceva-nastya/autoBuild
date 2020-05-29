@@ -9,13 +9,13 @@ class TableEdited extends Table
         $str = "";
 
         foreach ($data as $row) {
-            $str .= "<tr>";
+            $str .= "\t<tr>\n";
             foreach ($row as $cell) {
-                $str .= "<td>$cell</td>";
+                $str .= "\t\t<td>$cell</td>\n";
             }
-            $str .= "<td><a href='?action=del&id=$row[id]'>❌</a></td>";
-            $str .= "<td><a href='?action=showedit&id=$row[id]'>⛏</a></td>";
-            $str .= "</tr>";
+            $str .= "\t\t<td><a href='?action=del&id=$row[id]'>❌</a></td>\n";
+            $str .= "\t\t<td><a href='?action=showedit&id=$row[id]'>⛏</a></td>\n";
+            $str .= "\t</tr>\n";
         }
 
         $this->data = $str;
