@@ -1,17 +1,6 @@
 <?php
-echo "<table class = 'table'>";
-foreach ($table as $row) {
-    echo '<tr>';
-    foreach ($row as $value) {
-        echo "<td>$value</td>";
-    }
-    echo "<td><a href='?action=del&id=$row[id]'>❌</a></td>";
-    echo "<td><a href='?action=showedit&id=$row[id]'>⛏</a></td>";
-    echo "</tr>";
-}
-echo '</table>';
 
-echo View\Html\Html::create()->data($table)->class('table')->html();
+echo View\Html\Html::create('TableEdited')->data($table)->class('table')->html();
 
 ?>
 <form method="POST" action="?action=add" class="form">
