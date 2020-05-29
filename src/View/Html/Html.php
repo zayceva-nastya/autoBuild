@@ -4,8 +4,9 @@ namespace View\Html;
 
 class Html
 {
-    public static function create()
+    public static function create(string $className)
     {
-        return new Table();
+        $className = "View\\Html\\$className";
+        return new $className();
     }
 }
