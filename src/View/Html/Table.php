@@ -39,11 +39,11 @@ class Table
         $str = "";
 
         foreach ($data as $row) {
-            $str .= "<tr>";
+            $str .= "\t<tr>\n";
             foreach ($row as $cell) {
-                $str .= "<td>$cell</td>";
+                $str .= "\t\t<td>$cell</td>\n";
             }
-            $str .= "</tr>";
+            $str .= "\t</tr>\n";
         }
 
         $this->data = $str;
@@ -51,6 +51,6 @@ class Table
     }
     public function html()
     {
-        return "<table$this->style$this->class>$this->data</table>";
+        return "<table$this->style$this->class>\n$this->data</table>\n";
     }
 }
