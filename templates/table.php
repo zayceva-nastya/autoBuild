@@ -10,6 +10,9 @@ foreach ($table as $row) {
     echo "</tr>";
 }
 echo '</table>';
+
+echo View\Html\Html::create()->data($table)->class('table')->html();
+
 ?>
 <form method="POST" action="?action=add" class="form">
     <textarea name='text'></textarea>
