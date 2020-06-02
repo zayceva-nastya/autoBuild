@@ -2,12 +2,11 @@
 
 namespace View\Html;
 
-class Textarea
+
+class Textarea extends AbstractTag
 {
     protected $row = " row='50'";
     protected $coll = " coll='50'";
-    protected $class;
-    protected $style;
     protected $name;
     protected $innerText;
 
@@ -23,21 +22,9 @@ class Textarea
         return $this;
     }
 
-    public function setStyle(string $style)
-    {
-        $this->style = " style='$style'";
-        return $this;
-    }
-
     public function setInnerText(string $innerText)
     {
         $this->innerText = $innerText;
-        return $this;
-    }
-
-    public function setClass(string $class)
-    {
-        $this->class = " class='$class'";
         return $this;
     }
 

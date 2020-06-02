@@ -1,17 +1,18 @@
-<form method="POST" action="?action=edit">
-
 <?php
 
-// print_r($data);
+use View\Html\Html;
 
-foreach($data as $key=>$value)
-{
-    echo "<input type='text' name='$key' value='$value'> <br>";
+$html = "";
+
+foreach ($data as $name => $value) {
+    $html .= Html::create('input')->setName($name)->setValue($value)->html();
 }
 
-?>
-<input type="hidden" name="id" value="<?=$id?>">
-<input type="submit" value="Ok">
-</form>
-
-
+echo Html::create('Form')
+    ->setMethod('POST')
+    ->setAction('?action=edit')
+    ->setClass('form')
+    ->setContent($html)
+    ->addContent(Html::create('Input')->setType('hidden')->setName('id')->setValue($id)->html())
+    ->addContent(Html::create('Input')->setType('submit')->setValue('OK')->html())
+    ->html();

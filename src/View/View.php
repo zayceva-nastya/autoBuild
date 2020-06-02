@@ -2,6 +2,8 @@
 
 namespace View;
 
+use View\Html\Html;
+
 class View
 {
     private $layout;
@@ -42,7 +44,7 @@ class View
         if (is_array($this->data)) {
             extract($this->data);
         }
-
+        Html::create('input');
         include "$this->path$this->template.php";
     }
 }

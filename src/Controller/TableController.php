@@ -14,15 +14,21 @@ class TableController extends AbstractController
     {
         $this->table = $table;
         $this->view = $view;
-        $this->view->setTemplate('table');
+        $this->view->setTemplate('show');
     }
 
     public function actionShow()
     {
-        // print_r($this->table->get());
+        // print_r($this->table->getFields());
+        // $fields = $this->table->getFields();
+        // unset($fields['id']);
+        $fields = array_diff($this->table->getFields(), ['id']);
         $this
             ->view
-            ->setData(['table' => $this->table->get()])
+            ->setData([
+                'table' => $this->table->get(),
+                'fields' => $fields
+            ])
             ->view();
     }
 

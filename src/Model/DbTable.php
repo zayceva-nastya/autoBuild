@@ -4,10 +4,12 @@ namespace Model;
 
 use mysqli;
 
-class DbTable implements CRUDInterface
+class DbTable extends AbstractTable implements CRUDInterface
 {
-    private $mysqli;
-    private $tableName;
+    use ServiceTrait;
+
+    protected $mysqli;
+    protected $tableName;
 
     public function __construct(mysqli $mysqli, $tableName)
     {
@@ -23,11 +25,7 @@ class DbTable implements CRUDInterface
             $result = $this->mysqli->query("SELECT * FROM $this->tableName WHERE `id`=$id;");
         }
 
-        $array = [];
-        while ($row = $result->fetch_assoc()) {
-            $array[] = $row;
-        }
-        return $array;
+        return $this->queryResultToArray($result);
     }
 
     public function add(array $data): int
