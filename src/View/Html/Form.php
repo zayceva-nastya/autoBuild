@@ -2,7 +2,7 @@
 
 namespace View\Html;
 
-class Form 
+class Form
 {
     protected $action = "";
     protected $method = "GET";
@@ -23,15 +23,15 @@ class Form
         return $this;
     }
 
-    public function setClass(string $class)
-    {
-        $this->class = " class='$class'";
-        return $this;
-    }
-
     public function addContent(string $content)
     {
         $this->content .= $content;
+        return $this;
+    }
+
+    public function setClass(string $class)
+    {
+        $this->class = " class='$class'";
         return $this;
     }
 

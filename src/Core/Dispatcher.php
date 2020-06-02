@@ -2,11 +2,12 @@
 
 namespace Core;
 
-
+use Core\Config;
 use Controller\TableController;
 use Model\DbTable;
 use mysqli;
 use View\View;
+
 
 class Dispatcher
 {
@@ -16,7 +17,7 @@ class Dispatcher
 
     public function run()
     {
-        include __DIR__ . "/../../config/config.php";
+        // include __DIR__ . "/../../config/config.php";
         // ?action=show
         // ?action=add
 
@@ -26,12 +27,12 @@ class Dispatcher
         $controller = new TableController(
             new DbTable(
                 new mysqli(
-                    $config['mysql']['host'],
-                    $config['mysql']['user'],
-                    $config['mysql']['password'],
-                    $config['mysql']['database']
+                    Config::MYSQL_HOST,
+                    Config::MYSQL_USER_NAME,
+                    Config::MYSQL_PASSWORD,
+                    Config::MYSQL_DATABASE,
                 ),
-                $config['mysql']['table']
+                Config::MYSQL_TABLE
             ),
             $view
         );

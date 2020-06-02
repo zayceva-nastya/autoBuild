@@ -5,7 +5,4 @@ session_start();
 include "../src/autoload.php";
 
 
-
-use Core\Dispatcher;
-
-(new Dispatcher())->run();
+(new Core\Dispatcher())->run();
