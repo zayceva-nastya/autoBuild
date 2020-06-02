@@ -2,13 +2,11 @@
 
 namespace View\Html;
 
-class Form
+class Form extends AbstractTag
 {
     protected $action = "";
     protected $method = "GET";
     protected $content = "";
-    protected $class = "";
-
 
     public function setAction(string $action)
     {
@@ -29,12 +27,6 @@ class Form
         return $this;
     }
 
-    public function setClass(string $class)
-    {
-        $this->class = " class='$class'";
-        return $this;
-    }
-
     public function setMethod($method)
     {
         if (in_array($method, ["POST", "GET"])) {
@@ -46,6 +38,6 @@ class Form
 
     public function html()
     {
-        return "<form action='$this->action' method='$this->method'$this->class>\n$this->content</form>";
+        return "<form action='$this->action' method='$this->method'$this->class$this->style>\n$this->content</form>";
     }
 }

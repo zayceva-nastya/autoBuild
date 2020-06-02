@@ -2,11 +2,9 @@
 
 namespace View\Html;
 
-class Table
+class Table extends AbstractTag
 {
     protected $table;
-    protected $style;
-    protected $class;
     protected $data;
 
 
@@ -19,18 +17,6 @@ class Table
     {
         $this->style = '';
         $this->data = '';
-        return $this;
-    }
-
-    public function style(string $style): self
-    {
-        $this->style = " style='$style'";
-        return $this;
-    }
-
-    public function class(string $class): self
-    {
-        $this->class = " class='$class'";
         return $this;
     }
 

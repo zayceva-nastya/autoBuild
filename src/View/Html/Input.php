@@ -2,7 +2,7 @@
 
 namespace View\Html;
 
-class Input
+class Input extends AbstractTag
 {
     protected $value = '';
     protected $type = " type='text'";
@@ -17,7 +17,8 @@ class Input
             'reset',
             'password',
             'file',
-            'checkbox'
+            'checkbox',
+            'hidden'
         ])) {
             $this->type = " type='$type'";
         }
@@ -38,6 +39,6 @@ class Input
 
     public function html()
     {
-        return "<input$this->type$this->value$this->name>\n";
+        return "<input$this->type$this->value$this->name$this->style$this->class>\n";
     }
 }
