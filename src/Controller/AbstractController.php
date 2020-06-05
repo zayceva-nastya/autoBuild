@@ -4,8 +4,14 @@ namespace Controller;
 
 abstract class AbstractController
 {
+
     protected function redirect(string $location)
     {
         header("Location: $location");
+    }
+
+    protected function getClassName()
+    {
+        echo get_class($this);
     }
 }
