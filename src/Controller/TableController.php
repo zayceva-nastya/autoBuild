@@ -22,6 +22,7 @@ class TableController extends AbstractController
         // print_r($this->table->getComments());
         // $fields = $this->table->getFields();
         // unset($fields['id']);
+        $this->getClassName();
         $fields = array_diff($this->table->getFields(), ['id']);
         $comments = $this->table->getComments();
 

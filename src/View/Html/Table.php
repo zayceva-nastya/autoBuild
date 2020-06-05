@@ -37,6 +37,6 @@ class Table extends AbstractTag
     }
     public function html()
     {
-        return "<table$this->style$this->class>\n$this->data</table>\n";
+        return "<table class='table table-striped table-dark'  $this->style$this->class>\n$this->data</table>\n";
     }
 }

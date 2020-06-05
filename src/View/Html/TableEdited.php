@@ -14,7 +14,7 @@ class TableEdited extends Table
                 $str .= "\t\t<td>$cell</td>\n";
             }
             $str .= "\t\t<td><a href='?action=del&id=$row[id]'>❌</a></td>\n";
-            $str .= "\t\t<td><a href='?action=showedit&id=$row[id]'>⛏</a></td>\n";
+            $str .= "\t\t<td><a href='?action=showedit&id=$row[id]'>✏</a></td>\n";
             $str .= "\t</tr>\n";
         }
 

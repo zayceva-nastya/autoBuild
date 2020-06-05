@@ -6,8 +6,13 @@ echo Html::create('TableEdited')->data($table)->setClass('table')->html();
 
 $html = "";
 
+/** @var array $fields Список полей таблицы
+ * @var array $comments Комментарии к полям таблицы
+ */
+
 foreach ($fields as $field) {
-    $html .= "<label for = '$field'> $comments[$field]</label>";
+//    $html .= "<label for = '$field'> $comments[$field]</label>";
+    $html .= Html::create('Label')->setFor($field)->setInnerText($comments[$field])->html();
     $html .= Html::create('input')->setName($field)->setId($field)->html();
 }
 
