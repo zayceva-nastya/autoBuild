@@ -7,7 +7,8 @@ echo Html::create('TableEdited')->data($table)->setClass('table')->html();
 $html = "";
 
 foreach ($fields as $field) {
-    $html .= Html::create('input')->setName($field)->html();
+    $html .= "<label for = '$field'> $comments[$field]</label>";
+    $html .= Html::create('input')->setName($field)->setId($field)->html();
 }
 
 echo Html::create('Form')

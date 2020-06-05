@@ -19,15 +19,18 @@ class TableController extends AbstractController
 
     public function actionShow()
     {
-        // print_r($this->table->getFields());
+        // print_r($this->table->getComments());
         // $fields = $this->table->getFields();
         // unset($fields['id']);
         $fields = array_diff($this->table->getFields(), ['id']);
+        $comments = $this->table->getComments();
+
         $this
             ->view
             ->setData([
                 'table' => $this->table->get(),
-                'fields' => $fields
+                'fields' => $fields,
+                'comments' => $comments
             ])
             ->view();
     }
