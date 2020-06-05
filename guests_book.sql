@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jun 02, 2020 at 09:41 PM
--- Server version: 10.3.22-MariaDB
--- PHP Version: 7.4.5
+-- Хост: 127.0.0.1:3306
+-- Время создания: Июн 05 2020 г., 19:55
+-- Версия сервера: 10.4.12-MariaDB-log
+-- Версия PHP: 7.4.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `guests_book`
+-- База данных: `guests_book`
 --
 CREATE DATABASE IF NOT EXISTS `guests_book` DEFAULT CHARACTER SET utf16 COLLATE utf16_bin;
 USE `guests_book`;
@@ -26,17 +26,17 @@ USE `guests_book`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gb`
+-- Структура таблицы `gb`
 --
 
 CREATE TABLE `gb` (
-  `id` int(11) NOT NULL,
-  `text` text COLLATE utf16_bin NOT NULL,
-  `name` varchar(60) COLLATE utf16_bin NOT NULL
+  `id` int(11) NOT NULL COMMENT '№',
+  `text` text COLLATE utf16_bin NOT NULL COMMENT 'текст',
+  `name` varchar(60) COLLATE utf16_bin NOT NULL COMMENT 'Имя'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
 
 --
--- Dumping data for table `gb`
+-- Дамп данных таблицы `gb`
 --
 
 INSERT INTO `gb` (`id`, `text`, `name`) VALUES
@@ -51,55 +51,55 @@ INSERT INTO `gb` (`id`, `text`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phonebook`
+-- Структура таблицы `phonebook`
 --
 
 CREATE TABLE `phonebook` (
-  `id` int(11) NOT NULL,
-  `phone` varchar(50) COLLATE utf16_bin NOT NULL,
-  `adress` varchar(100) COLLATE utf16_bin NOT NULL,
-  `name` varchar(60) COLLATE utf16_bin NOT NULL
+  `id` int(11) NOT NULL COMMENT '№',
+  `phone` varchar(50) COLLATE utf16_bin NOT NULL COMMENT 'телефон',
+  `adress` varchar(100) COLLATE utf16_bin NOT NULL COMMENT 'адрес',
+  `name` varchar(60) COLLATE utf16_bin NOT NULL COMMENT 'Имя'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
 
 --
--- Dumping data for table `phonebook`
+-- Дамп данных таблицы `phonebook`
 --
 
 INSERT INTO `phonebook` (`id`, `phone`, `adress`, `name`) VALUES
 (1, '3463474', 'ffffff', 'Petya'),
-(2, '4445454', 'gggggg', 'Nick');
+(2, '3444343434', 'dfdffdfd', 'dfdffdfdf');
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `gb`
+-- Индексы таблицы `gb`
 --
 ALTER TABLE `gb`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `phonebook`
+-- Индексы таблицы `phonebook`
 --
 ALTER TABLE `phonebook`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `gb`
+-- AUTO_INCREMENT для таблицы `gb`
 --
 ALTER TABLE `gb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `phonebook`
+-- AUTO_INCREMENT для таблицы `phonebook`
 --
 ALTER TABLE `phonebook`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
