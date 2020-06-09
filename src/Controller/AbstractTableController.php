@@ -9,9 +9,9 @@ use mysqli;
 
 abstract class AbstractTableController extends AbstractController
 {
-    protected  $table; // CRUDInterface
-    protected  $view; // View
-    protected  $tableName;
+    protected $table; // CRUDInterface
+    protected $view; // View
+    protected $tableName;
 
     public function __construct(View $view, mysqli $mysqli)
     {
@@ -31,14 +31,13 @@ abstract class AbstractTableController extends AbstractController
         // unset($fields['id']);
         // echo $this->getClassName();
         $fields = array_diff($this->table->getFields(), ['id']);
-        $comments = $this->table->getComments();
 
         $this
             ->view
             ->setData([
                 'table' => $this->table->get(),
                 'fields' => $fields,
-                'comments' => $comments,
+                'comments' => $this->table->getComments(),
                 'type' => $this->getClassName()
             ])
             ->view();
@@ -74,9 +73,10 @@ abstract class AbstractTableController extends AbstractController
             ->view
             ->setTemplate('edit')
             ->setData([
-                'data' => $viewData,
+                'fields' => $viewData,
                 'id' => $id,
-                'type' => $this->getClassName()
+                'type' => $this->getClassName(),
+                'comments' => $this->table->getComments()
             ])
             ->view();
 
