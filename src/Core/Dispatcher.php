@@ -26,7 +26,7 @@ class Dispatcher
         );
 
         $this->view = new View();
-        $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type'])) ?? 'Default') . "Controller";
+        $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type']?? 'Default')) ) . "Controller";
         $this->actionName = "action" . ($_GET['action'] ?? 'Default');
     }
 
