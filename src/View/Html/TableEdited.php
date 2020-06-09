@@ -11,7 +11,7 @@ class TableEdited extends Table
         $this->type = $type;
         return $this;
     }
-    public function data(array $data): self
+    public function data(array $data)
     {
         $str = "";
 

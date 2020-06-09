@@ -10,7 +10,7 @@ foreach ($data as $name => $value) {
 
 echo Html::create('Form')
     ->setMethod('POST')
-    ->setAction('?action=edit')
+    ->setAction("?action=edit&type=$type")
     ->setClass('form')
     ->setContent($html)
     ->addContent(Html::create('Input')->setType('hidden')->setName('id')->setValue($id)->html())

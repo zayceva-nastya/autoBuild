@@ -26,8 +26,8 @@ class Dispatcher
         );
 
         $this->view = new View();
-        $this->controllerName = "Controller\\" . ($_GET['type'] ?? 'table') . "Controller";
-        $this->actionName = "action" . ($_GET['action'] ?? 'show');
+        $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type'])) ?? 'Default') . "Controller";
+        $this->actionName = "action" . ($_GET['action'] ?? 'Default');
     }
 
     public function run()
@@ -35,14 +35,11 @@ class Dispatcher
         $this->view->setLayout('mainLayout');
 
         $controller = new $this->controllerName(
-            new DbTable(
-                $this->mysqli,
-                Config::MYSQL_TABLE
-            ),
-            $this->view
+            $this->view,
+            $this->mysqli
         );
 
-//        $action = "action" . $_GET["action"];
+        //        $action = "action" . $_GET["action"];
         // echo $_SERVER['REQUEST_URI'];
         $controllerData = ['post' => $_POST, 'get' => $_GET];
 
