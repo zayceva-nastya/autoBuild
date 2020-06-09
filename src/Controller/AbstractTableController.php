@@ -4,15 +4,22 @@ namespace Controller;
 
 use Model\CRUDInterface;
 use View\View;
+use Model\DbTable;
+use mysqli;
 
-class TableController extends AbstractController
+abstract class AbstractTableController extends AbstractController
 {
     protected  $table; // CRUDInterface
     protected  $view; // View
+    protected  $tableName;
 
-    public function __construct(CRUDInterface $table, View $view)
+    public function __construct(View $view, mysqli $mysqli)
     {
-        $this->table = $table;
+        $this->table = new DbTable(
+            $mysqli,
+            $this->tableName
+        );
+
         $this->view = $view;
         $this->view->setTemplate('show');
     }
@@ -88,12 +95,4 @@ class TableController extends AbstractController
         $this->table->edit($data['post']['id'], $editData);
         $this->redirect('?action=show&type=' . $this->getClassName());
     }
-
-    // public function actionDefault()
-    // {
-    //     $this
-    //         ->view
-    //         ->setTemplate('default')
-    //         ->view();
-    // }
 }

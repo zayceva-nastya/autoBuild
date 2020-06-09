@@ -2,8 +2,15 @@
 
 namespace Controller;
 
+use View\View;
+
 abstract class AbstractController
 {
+
+    public function __construct(View $view)
+    {
+        $this->view = $view;
+    }
 
     protected function redirect(string $location)
     {

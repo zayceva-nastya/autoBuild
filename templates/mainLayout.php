@@ -11,7 +11,8 @@
 </head>
 
 <body>
-<a href="?action=show&type=table">показать</a>
+<a href="?action=show&type=gb">Gb</a>
+<a href="?action=show&type=Phonebook">Phonebook</a>
 
 <?php
 $this->body();
