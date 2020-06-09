@@ -12,6 +12,11 @@ abstract class AbstractController
 
     protected function getClassName()
     {
-        echo get_class($this);
+        preg_match(
+            '/(.*)Controller$/',
+            (new \ReflectionClass(get_class($this)))->getShortName(),
+            $match
+        );
+        return strtolower($match[1]);
     }
 }

@@ -22,7 +22,7 @@ class TableController extends AbstractController
         // print_r($this->table->getComments());
         // $fields = $this->table->getFields();
         // unset($fields['id']);
-        $this->getClassName();
+        // echo $this->getClassName();
         $fields = array_diff($this->table->getFields(), ['id']);
         $comments = $this->table->getComments();
 
@@ -31,7 +31,8 @@ class TableController extends AbstractController
             ->setData([
                 'table' => $this->table->get(),
                 'fields' => $fields,
-                'comments' => $comments
+                'comments' => $comments,
+                'type' => $this->getClassName()
             ])
             ->view();
     }
@@ -40,7 +41,7 @@ class TableController extends AbstractController
     {
         // print_r($data);
         $this->table->add($data['post']);
-        $this->redirect('?action=show');
+        $this->redirect('?action=show&type=' . $this->getClassName());
     }
 
     public function actionDel(array $data)
@@ -50,7 +51,7 @@ class TableController extends AbstractController
         if (isset($data['get']['id'])) {
             $this->table->del($data['get']['id']);
         }
-        $this->redirect('?action=show');
+        $this->redirect('?action=show&type=' . $this->getClassName());
     }
 
     public function actionShowEdit(array $data)
@@ -67,7 +68,8 @@ class TableController extends AbstractController
             ->setTemplate('edit')
             ->setData([
                 'data' => $viewData,
-                'id' => $id
+                'id' => $id,
+                'type' => $this->getClassName()
             ])
             ->view();
 
@@ -84,14 +86,14 @@ class TableController extends AbstractController
         // print_r($editData);
 
         $this->table->edit($data['post']['id'], $editData);
-        $this->redirect('?action=show');
+        $this->redirect('?action=show&type=' . $this->getClassName());
     }
 
-    public function actionDefault()
-    {
-        $this
-            ->view
-            ->setTemplate('default')
-            ->view();
-    }
+    // public function actionDefault()
+    // {
+    //     $this
+    //         ->view
+    //         ->setTemplate('default')
+    //         ->view();
+    // }
 }
