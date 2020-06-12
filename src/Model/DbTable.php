@@ -6,23 +6,46 @@ use mysqli;
 
 class DbTable extends AbstractTable implements CRUDInterface
 {
-    use ServiceTrait;
+    use QueryBuilder,
+        ServiceTrait;
 
     protected $mysqli;
     protected $tableName;
+    protected $current;
+    protected const SELECT_DEFAULT = [
+        "SELECT" => "*",
+        "FROM" => null,
+        "WHERE" => "1",
+        "GROUP BY" => null,
+        "HAVING" => null,
+        "ORDER BY" => null,
+        "LIMIT" => null
+    ];
 
     public function __construct(mysqli $mysqli, $tableName)
     {
         $this->mysqli = $mysqli;
-        $this->tableName = $tableName;
+        $this->current["FROM"] = $this->tableName = $tableName;
+
+    }
+
+    public function getSql()
+    {
+        $sql = "";
+        foreach (array_merge(self::SELECT_DEFAULT, $this->current) as $key => $value) {
+            if (!empty ($value)) {
+                $sql .= "$key $value\n";
+            }
+        }
+        return $sql;
     }
 
     public function get(int $id = null): array
     {
         if ($id === null) {
-            $result = $this->mysqli->query("SELECT * FROM $this->tableName;");
+            $result = $this->mysqli->query($this->getSql());
         } else {
-            $result = $this->mysqli->query("SELECT * FROM $this->tableName WHERE `id`=$id;");
+            $result = $this->mysqli->query($this->setWhere("`id`=$id")->getSql());
         }
 
         return $this->queryResultToArray($result);

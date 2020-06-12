@@ -41,6 +41,21 @@ abstract class AbstractTableController extends AbstractController
                 'type' => $this->getClassName()
             ])
             ->view();
+//        echo $this->table
+//            ->setSelect("id")
+//            ->addSelect("adress")
+//            ->setFrom("gb")
+//            ->addFrom("phonebook")
+//            ->setWhere("adress = 'Московский проспект'")
+//            ->addWhere("name = 'Vasia'")
+//            ->setGroupBy("name")
+//            ->addGroupBy("lastname")
+//            ->setHaving("sum(adress)>5")
+//            ->addHaving("count(name) <80")
+//            ->setOrderBy("id")
+//            ->addOrderBy("name")
+//            ->setLimit("5, 9")
+//            ->getSql();
     }
 
     public function actionAdd(array $data)
