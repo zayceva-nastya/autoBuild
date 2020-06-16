@@ -2,15 +2,24 @@
 
 use View\Html\Html;
 
+/** @var int $pageCount Количество страниц
+ * @var array $fields Список полей таблицы
+ * @var array $comments Комментарии к полям таблицы
+ * @var string $type Имя контроллера
+ */
+
+echo Html::create("Pagination")
+    ->setClass('pagination')
+    ->setControllerType($type)
+    ->setPageCount($pageCount)
+    ->html();
+
 echo Html::create('TableEdited')
     ->setControllerType($type)
     ->data($table)
     ->setClass('table')
     ->html();
 
-/** @var array $fields Список полей таблицы
- * @var array $comments Комментарии к полям таблицы
- */
 
 $form = Html::create('Form')
     ->setMethod('POST')
