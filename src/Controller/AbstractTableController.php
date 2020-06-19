@@ -22,7 +22,7 @@ abstract class AbstractTableController extends AbstractController
         );
 
         parent::__construct($view);
-        $this->view->setTemplate('show');
+        $this->view->setFolder('table');
     }
 
     public function actionShow(array $data)
@@ -37,6 +37,7 @@ abstract class AbstractTableController extends AbstractController
 
         $this
             ->view
+            ->setTemplate('show')
             ->setData([
                 'table' => $this
                     ->table
@@ -46,8 +47,8 @@ abstract class AbstractTableController extends AbstractController
                 'comments' => $this->table->getComments(),
                 'type' => $this->getClassName(),
                 'pageCount' => $this->table->getPageCount()
-            ])
-            ->view();
+            ]);
+
 //        echo $this->table
 //            ->setSelect("id")
 //            ->addSelect("adress")
@@ -102,8 +103,8 @@ abstract class AbstractTableController extends AbstractController
                 'id' => $id,
                 'type' => $this->getClassName(),
                 'comments' => $this->table->getComments()
-            ])
-            ->view();
+            ]);
+
 
         // print_r($viewData);
     }

@@ -30,3 +30,8 @@
     margin: 20px;
     padding: 25px;
 }
+
+.guestbookform label{
+    display: block;
+    margin: 20px;
+}
