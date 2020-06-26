@@ -4,27 +4,19 @@ namespace Core;
 
 use Core\Config;
 use Controller\TableController;
+use Model\DbConection;
 use Model\DbTable;
-use mysqli;
 use View\View;
 
 
 class Dispatcher
 {
-    protected $mysqli;
     protected $view;
     protected $controllerName;
     protected $actionName;
 
     public function __construct()
     {
-        $this->mysqli = new mysqli(
-            Config::MYSQL_HOST,
-            Config::MYSQL_USER_NAME,
-            Config::MYSQL_PASSWORD,
-            Config::MYSQL_DATABASE
-        );
-
         $this->view = new View();
         $this->controllerName = "Controller\\" . (ucfirst(strtolower($_GET['type'] ?? 'Default'))) . "Controller";
         $this->actionName = "action" . ($_GET['action'] ?? 'Default');
@@ -36,8 +28,7 @@ class Dispatcher
 
         if (class_exists($this->controllerName)) {
             $controller = new $this->controllerName(
-                $this->view,
-                $this->mysqli
+                $this->view
             );
             $controllerData = ['post' => $_POST, 'get' => $_GET];
 
@@ -47,7 +38,6 @@ class Dispatcher
             } else {
                 header("HTTP/1.0 404 Not Found");
             }
-
         } else {
             header("HTTP/1.0 404 Not Found");
         }

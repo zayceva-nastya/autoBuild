@@ -7,6 +7,7 @@ use Model\CRUDInterface;
 use View\View;
 use Model\DbTable;
 use mysqli;
+use Model\DbConection;
 
 abstract class AbstractTableController extends AbstractController
 {
@@ -14,10 +15,15 @@ abstract class AbstractTableController extends AbstractController
     protected $view; // View
     protected $tableName;
 
-    public function __construct(View $view, mysqli $mysqli)
+    public function __construct(View $view)
     {
         $this->table = new DbTable(
-            $mysqli,
+            DbConection::create([
+                'host' => Config::MYSQL_HOST,
+                'username' => Config::MYSQL_USER_NAME,
+                'passwd' => Config::MYSQL_PASSWORD,
+                'dbname' => Config::MYSQL_DATABASE
+            ]),
             $this->tableName
         );
 
@@ -27,13 +33,13 @@ abstract class AbstractTableController extends AbstractController
 
     public function actionShow(array $data)
     {
-//        $currentPage = $data['get']['page'] ?? 1;
-//        print_r($data);
+        //        $currentPage = $data['get']['page'] ?? 1;
+        //        print_r($data);
         // print_r($this->table->getComments());
         // $fields = $this->table->getFields();
         // unset($fields['id']);
         // echo $this->getClassName();
-//        $fields = array_diff($this->table->getFields(), ['id']);
+        //        $fields = array_diff($this->table->getFields(), ['id']);
 
         $this
             ->view
@@ -49,24 +55,24 @@ abstract class AbstractTableController extends AbstractController
                 'pageCount' => $this->table->getPageCount()
             ]);
 
-//        echo $this->table
-//            ->setSelect("id")
-//            ->addSelect("adress")
-//            ->setFrom("gb")
-//            ->addFrom("phonebook")
-//            ->setWhere("adress = 'Московский проспект'")
-//            ->addWhere("name = 'Vasia'")
-//            ->setGroupBy("name")
-//            ->addGroupBy("lastname")
-//            ->setHaving("sum(adress)>5")
-//            ->addHaving("count(name) <80")
-//            ->setOrderBy("id")
-//            ->addOrderBy("name")
-//            ->setLimit("5, 9")
-//            ->getSql();
-//        $tmp = $this->table->setPageSize(2)->getPage(2);
-//        print_r($tmp);
-//        print_r($this->table->getPageCount());
+        //        echo $this->table
+        //            ->setSelect("id")
+        //            ->addSelect("adress")
+        //            ->setFrom("gb")
+        //            ->addFrom("phonebook")
+        //            ->setWhere("adress = 'Московский проспект'")
+        //            ->addWhere("name = 'Vasia'")
+        //            ->setGroupBy("name")
+        //            ->addGroupBy("lastname")
+        //            ->setHaving("sum(adress)>5")
+        //            ->addHaving("count(name) <80")
+        //            ->setOrderBy("id")
+        //            ->addOrderBy("name")
+        //            ->setLimit("5, 9")
+        //            ->getSql();
+        //        $tmp = $this->table->setPageSize(2)->getPage(2);
+        //        print_r($tmp);
+        //        print_r($this->table->getPageCount());
     }
 
     public function actionAdd(array $data)
