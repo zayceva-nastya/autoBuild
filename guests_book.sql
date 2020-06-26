@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 26 2020 г., 20:24
+-- Время создания: Июн 26 2020 г., 21:36
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.4.5
 
@@ -30,9 +30,9 @@ USE `guests_book`;
 --
 
 CREATE TABLE `gb` (
-  `id` int(11) NOT NULL,
-  `text` text COLLATE utf16_bin NOT NULL,
-  `name` varchar(60) COLLATE utf16_bin NOT NULL
+  `id` int(11) NOT NULL COMMENT '№',
+  `text` text COLLATE utf16_bin NOT NULL COMMENT 'Текст',
+  `name` varchar(60) COLLATE utf16_bin NOT NULL COMMENT 'Имя'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
 
 --
@@ -54,11 +54,11 @@ INSERT INTO `gb` (`id`, `text`, `name`) VALUES
 --
 
 CREATE TABLE `guestbook` (
-  `id` int(11) NOT NULL,
-  `text` text COLLATE utf16_bin NOT NULL,
-  `phonenumber` varchar(50) COLLATE utf16_bin NOT NULL,
-  `email` varchar(50) COLLATE utf16_bin NOT NULL,
-  `name` varchar(50) COLLATE utf16_bin NOT NULL
+  `id` int(11) NOT NULL COMMENT '№',
+  `text` text COLLATE utf16_bin NOT NULL COMMENT 'Текст',
+  `phonenumber` varchar(50) COLLATE utf16_bin NOT NULL COMMENT 'Телефон',
+  `email` varchar(50) COLLATE utf16_bin NOT NULL COMMENT 'Почта',
+  `name` varchar(50) COLLATE utf16_bin NOT NULL COMMENT 'Имя'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
 
 --
@@ -125,13 +125,13 @@ ALTER TABLE `phonebook`
 -- AUTO_INCREMENT для таблицы `gb`
 --
 ALTER TABLE `gb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `guestbook`
 --
 ALTER TABLE `guestbook`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `phonebook`
