@@ -2,10 +2,7 @@
 
 namespace Core;
 
-use Core\Config;
 use Controller\TableController;
-use Model\DbConection;
-use Model\DbTable;
 use View\View;
 
 
