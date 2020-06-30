@@ -1,0 +1,16 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Controller\\": "src/Controller",
+      "Core\\": "src/Core",
+      "Model\\": "src/Model",
+      "View\\": "src/View"
+    }
+  },
+  "require": {
+    "texlab/mydb": "^0.0.4"
+  },
+  "scripts": {
+    "idb": "php install/install.php"
+  }
+}
