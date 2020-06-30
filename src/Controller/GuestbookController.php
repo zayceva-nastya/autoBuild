@@ -18,8 +18,8 @@ class GuestbookController extends AbstractTableController
             ->setTemplate('show')
             ->setData([
                 'table' => $this->table->get(),
-                'fields' => array_diff($this->table->getFields(), ['id']),
-                'comments' => $this->table->getComments(),
+                'fields' => array_diff($this->table->getColumnsNames(), ['id']),
+                'comments' => $this->table->getColumnsComments(),
                 'type' => $this->getClassName()
             ]);
     }

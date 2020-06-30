@@ -4,6 +4,8 @@ namespace Controller;
 
 use Core\Config;
 use Model\CRUDInterface;
+use TexLab\MyDB\DB;
+use TexLab\MyDB\DbEntity;
 use View\View;
 use Model\DbTable;
 use mysqli;
@@ -17,14 +19,14 @@ abstract class AbstractTableController extends AbstractController
 
     public function __construct(View $view)
     {
-        $this->table = new DbTable(
-            DbConection::create([
+        $this->table = new DbEntity(
+            $this->tableName,
+            DB::Link([
                 'host' => Config::MYSQL_HOST,
                 'username' => Config::MYSQL_USER_NAME,
-                'passwd' => Config::MYSQL_PASSWORD,
+                'password' => Config::MYSQL_PASSWORD,
                 'dbname' => Config::MYSQL_DATABASE
-            ]),
-            $this->tableName
+            ])
         );
 
         parent::__construct($view);
@@ -49,10 +51,10 @@ abstract class AbstractTableController extends AbstractController
                     ->table
                     ->setPageSize(Config::PAGE_SIZE)
                     ->getPage($data['get']['page'] ?? 1),
-                'fields' => array_diff($this->table->getFields(), ['id']),
-                'comments' => $this->table->getComments(),
+                'fields' => array_diff($this->table->getColumnsNames(), ['id']),
+                'comments' => $this->table->getColumnsComments(),
                 'type' => $this->getClassName(),
-                'pageCount' => $this->table->getPageCount()
+                'pageCount' => $this->table->pageCount()
             ]);
 
         //        echo $this->table
@@ -87,7 +89,7 @@ abstract class AbstractTableController extends AbstractController
 
         // print_r($data);
         if (isset($data['get']['id'])) {
-            $this->table->del($data['get']['id']);
+            $this->table->del(['id' => $data['get']['id']]);
         }
         $this->redirect('?action=show&type=' . $this->getClassName());
     }
@@ -97,7 +99,7 @@ abstract class AbstractTableController extends AbstractController
         // print_r($data['get']['id']);
         $id = $data['get']['id'];
 
-        $viewData = $this->table->get($id)[0];
+        $viewData = $this->table->get(['id' => $id])[0];
 
         unset($viewData['id']); // Del id
 
@@ -108,7 +110,7 @@ abstract class AbstractTableController extends AbstractController
                 'fields' => $viewData,
                 'id' => $id,
                 'type' => $this->getClassName(),
-                'comments' => $this->table->getComments()
+                'comments' => $this->table->getColumnsComments()
             ]);
 
 
@@ -124,7 +126,7 @@ abstract class AbstractTableController extends AbstractController
 
         // print_r($editData);
 
-        $this->table->edit($data['post']['id'], $editData);
+        $this->table->edit(['id' => $data['post']['id']], $editData);
         $this->redirect('?action=show&type=' . $this->getClassName());
     }
 }
