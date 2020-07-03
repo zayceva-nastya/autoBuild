@@ -6,7 +6,7 @@ use Controller\TableController;
 use View\View;
 
 
-class Dispatcher
+class Router
 {
     protected $view;
     protected $controllerName;
@@ -31,7 +31,10 @@ class Dispatcher
 
             if (method_exists($controller, $this->actionName)) {
                 $controller->{$this->actionName}($controllerData);
-                $this->view->view();
+                $this
+                    ->view
+                    ->addData(['controllerType' => $_GET['type']])
+                    ->view();
             } else {
                 header("HTTP/1.0 404 Not Found");
             }

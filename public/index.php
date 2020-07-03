@@ -5,4 +5,4 @@ session_start();
 include "../vendor/autoload.php";
 
 
-(new Core\Dispatcher())->run();
+(new Core\Router())->run();
