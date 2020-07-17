@@ -29,8 +29,26 @@ class UsersController extends AbstractTableController
     public function actionShow(array $data)
     {
         parent::actionShow($data);
-
+        $this
+            ->view
+            ->setFolder('users')
+            ->addData([
+                'groupNames' => $this->table->getGroupNames(),
+                'table' => $this
+                    ->table
+                    ->reset()
+                    ->setPageSize(Config::PAGE_SIZE)
+                    ->getUsersPage($data['get']['page'] ?? 1)
+            ]);
     }
-
-
+    public function actionShowEdit(array $data)
+    {
+        parent::actionShowEdit($data);
+        $this
+            ->view
+            ->setFolder('users')
+            ->addData([
+                'groupNames' => $this->table->getGroupNames()
+            ]);;
+    }
 }

@@ -8,7 +8,8 @@
     }
   },
   "require": {
-    "texlab/mydb": "^0.0.4"
+    "texlab/mydb": "^0.0.4",
+    "texlab/html": "^0.03.0"
   },
   "scripts": {
     "idb": "php install/install.php",
