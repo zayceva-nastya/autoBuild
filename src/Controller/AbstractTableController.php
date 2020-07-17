@@ -11,7 +11,7 @@ use Model\DbTable;
 use mysqli;
 use Model\DbConection;
 
-abstract class AbstractTableController extends AbstractController
+abstract class AbstractTableController extends AbstractController implements CRUDControllerInterface
 {
     protected $table; // CRUDInterface
     protected $view; // View

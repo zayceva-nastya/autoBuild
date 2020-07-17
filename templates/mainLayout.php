@@ -27,14 +27,14 @@
             <li class="nav-item<?= $controllerType == 'Phonebook' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=Phonebook">Phonebook</a>
             </li>
-            <li class="nav-item<?= $controllerType == 'gb' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=gb">Gb</a>
-            </li>
             <li class="nav-item<?= $controllerType == 'guestbook' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=guestbook">Гостевая книга</a>
             </li>
             <li class="nav-item<?= $controllerType == 'group' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=group">Group</a>
+            </li>
+            <li class="nav-item<?= $controllerType == 'users' ? ' active' : '' ?>">
+                <a class="nav-link" href="?action=show&type=users">Users</a>
             </li>
     </div>
 </nav>
