@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 26 2020 г., 21:36
--- Версия сервера: 10.3.22-MariaDB
+-- Время создания: Июл 17 2020 г., 20:35
+-- Версия сервера: 5.5.67-MariaDB
 -- Версия PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -26,26 +26,22 @@ USE `guests_book`;
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gb`
+-- Структура таблицы `group`
 --
 
-CREATE TABLE `gb` (
+CREATE TABLE `group` (
   `id` int(11) NOT NULL COMMENT '№',
-  `text` text COLLATE utf16_bin NOT NULL COMMENT 'Текст',
-  `name` varchar(60) COLLATE utf16_bin NOT NULL COMMENT 'Имя'
-) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
+  `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Имя',
+  `kod` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Код'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `gb`
+-- Дамп данных таблицы `group`
 --
 
-INSERT INTO `gb` (`id`, `text`, `name`) VALUES
-(1, 'Hello', 'Vasya'),
-(2, 'Hello', 'Vasya'),
-(8, 'addssss', 'somedddd'),
-(13, 'addss', 'nameass'),
-(14, 'add', 'soe'),
-(15, 'add', 's');
+INSERT INTO `group` (`id`, `name`, `kod`) VALUES
+(1, 'Администратор', 'admin'),
+(2, 'Пользователь', 'user');
 
 -- --------------------------------------------------------
 
@@ -95,15 +91,37 @@ INSERT INTO `phonebook` (`id`, `phone`, `adress`, `name`) VALUES
 (7, '', '', ''),
 (8, '1234567', 'adress', 'name');
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL COMMENT '№',
+  `login` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Пользователь',
+  `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Пароль',
+  `group_id` int(11) NOT NULL COMMENT 'Группа'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `login`, `password`, `group_id`) VALUES
+(2, 'Pavel', '1234', 1),
+(3, 'Vasya', '123', 2);
+
 --
 -- Индексы сохранённых таблиц
 --
 
 --
--- Индексы таблицы `gb`
+-- Индексы таблицы `group`
 --
-ALTER TABLE `gb`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `group`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Индексы таблицы `guestbook`
@@ -118,14 +136,21 @@ ALTER TABLE `phonebook`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `group_id` (`group_id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT для таблицы `gb`
+-- AUTO_INCREMENT для таблицы `group`
 --
-ALTER TABLE `gb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=18;
+ALTER TABLE `group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `guestbook`
@@ -137,7 +162,23 @@ ALTER TABLE `guestbook`
 -- AUTO_INCREMENT для таблицы `phonebook`
 --
 ALTER TABLE `phonebook`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=4;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `group` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
