@@ -4,6 +4,7 @@ require "vendor/autoload.php";
 
 use TexLab\MyDB\Runner;
 use TexLab\MyDB\DB;
+use Core\Config;
 
 // class MyRunner extends Runner
 // {
@@ -14,11 +15,12 @@ use TexLab\MyDB\DB;
 //     }
 // }
 
-$runner = new Runner(DB::Link([
-    'host' => 'localhost',
-    'username' => 'root',
-    'password' => 'root',
-]));
+$runner = new Runner(
+    DB::Link([
+        'host' => Config::MYSQL_HOST,
+        'username' => Config::MYSQL_USER_NAME,
+        'password' => Config::MYSQL_PASSWORD
+    ]));
 
 foreach (explode(";", file_get_contents('install/guests_book.sql')) as $value) {
     try {

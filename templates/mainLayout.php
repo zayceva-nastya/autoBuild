@@ -33,6 +33,9 @@
             <li class="nav-item<?= $controllerType == 'guestbook' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=show&type=guestbook">Гостевая книга</a>
             </li>
+            <li class="nav-item<?= $controllerType == 'group' ? ' active' : '' ?>">
+                <a class="nav-link" href="?action=show&type=group">Group</a>
+            </li>
     </div>
 </nav>
 
