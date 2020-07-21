@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 17 2020 г., 20:35
+-- Время создания: Июл 21 2020 г., 21:07
 -- Версия сервера: 5.5.67-MariaDB
 -- Версия PHP: 7.4.5
 
@@ -101,16 +101,17 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL COMMENT '№',
   `login` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Пользователь',
   `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Пароль',
-  `group_id` int(11) NOT NULL COMMENT 'Группа'
+  `group_id` int(11) NOT NULL COMMENT 'Группа',
+  `FIO` varchar(150) NOT NULL COMMENT 'ФИО'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `group_id`) VALUES
-(2, 'Pavel', '1234', 1),
-(3, 'Vasya', '123', 2);
+INSERT INTO `users` (`id`, `login`, `password`, `group_id`, `FIO`) VALUES
+(2, 'Pavel', '1234', 2, 'БОНДАРЕНКО ПАВЕЛ ВЛАДИМИРОВИЧ'),
+(3, 'Vasya', '123', 2, 'ПУПКИН ВАСИЛИЙ');
 
 --
 -- Индексы сохранённых таблиц
