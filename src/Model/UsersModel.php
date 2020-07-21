@@ -16,9 +16,9 @@ class UsersModel extends DbEntity
 
     public function getUsersPage(int $page)
     {
-        return  $this
+        return $this
             ->reset()
-            ->setSelect('`users`.`id`, `users`.`login`, `users`.`password`, `group`.`name` AS group_id')
+            ->setSelect('`users`.`id`, `users`.`login`, `users`.`password`,  `group`.`name` AS group_id, `users`.`FIO`')
             ->setFrom('`users`,`group`')
             ->setWhere('`users`.`group_id` = `group`.`id`')
             ->setOrderBy('`users`.`id`')
