@@ -11,4 +11,5 @@ class Config
     const PAGE_SIZE = 3;
 //    const MYSQL_TABLE = 'phonebook';
     // const MYSQL_INFO = 'phonebook';
+    const BLOCK_LIST = '../BlockList.json';
 }
