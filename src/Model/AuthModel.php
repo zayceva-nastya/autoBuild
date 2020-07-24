@@ -12,7 +12,7 @@ class AuthModel extends DbEntity
     {
         return $this
             ->reset()
-            ->setSelect('`kod`, `FIO`, `group`.`name`')
+            ->setSelect('`cod`, `FIO`, `group`.`name`')
             ->setFrom('`users`,`group`')
             ->setWhere('`users`.`group_id` = `group`.`id`')
             ->addWhere("BINARY `users`.`login`= '$login'")

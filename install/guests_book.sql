@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 21 2020 г., 21:07
--- Версия сервера: 5.5.67-MariaDB
+-- Время создания: Июл 24 2020 г., 21:09
+-- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -32,14 +32,14 @@ USE `guests_book`;
 CREATE TABLE `group` (
   `id` int(11) NOT NULL COMMENT '№',
   `name` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Имя',
-  `kod` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Код'
+  `cod` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Код'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `group`
 --
 
-INSERT INTO `group` (`id`, `name`, `kod`) VALUES
+INSERT INTO `group` (`id`, `name`, `cod`) VALUES
 (1, 'Администратор', 'admin'),
 (2, 'Пользователь', 'user');
 
@@ -110,7 +110,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `password`, `group_id`, `FIO`) VALUES
-(2, 'Pavel', '1234', 2, 'БОНДАРЕНКО ПАВЕЛ ВЛАДИМИРОВИЧ'),
+(2, 'Pavel', '1234', 1, 'БОНДАРЕНКО ПАВЕЛ ВЛАДИМИРОВИЧ'),
 (3, 'Vasya', '123', 2, 'ПУПКИН ВАСИЛИЙ');
 
 --
