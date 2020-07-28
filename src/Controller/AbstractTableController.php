@@ -81,8 +81,13 @@ abstract class AbstractTableController extends AbstractController implements CRU
     public function actionAdd(array $data)
     {
         // print_r($data);
+        // try {
         $this->table->add($data['post']);
+        // } catch (\Throwable $th) {
+        //     $_SESSION['errors'][] = $th->getMessage();
+        // } finally {
         $this->redirect('?action=show&type=' . $this->getClassName());
+        // }
     }
 
     public function actionDel(array $data)

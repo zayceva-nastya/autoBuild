@@ -51,4 +51,14 @@ class UsersController extends AbstractTableController
                 'groupNames' => $this->table->getGroupNames()
             ]);;
     }
+    public function actionAdd(array $data)
+    {
+        $data['post']['password'] = md5($data['post']['password'] . Config::SALT);
+        parent::actionAdd($data);
+    }
+    public function actionEdit(array $data)
+    {
+        $data['post']['password'] = md5($data['post']['password'] . Config::SALT);
+        parent::actionEdit($data);
+    }
 }
