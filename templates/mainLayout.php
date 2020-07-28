@@ -14,6 +14,16 @@
 
 <body>
     <?php
+    // if (!empty($_SESSION['errors'])) {
+    //     foreach ($_SESSION['errors'] as $error) {
+    //         echo $error . "<br>";
+    //     }
+    //     unset($_SESSION['errors']);
+    // }
+    // print_r($_SESSION['errors']);
+    // $_SESSION['errors'] = [];
+    ?>
+    <?php
     switch ($_SESSION['user']['cod']) {
         case 'admin':
             include "adminMenu.php";

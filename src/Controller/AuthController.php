@@ -48,7 +48,7 @@ class AuthController extends AbstractController
             ->table
             ->checkUser(
                 $httpData['post']['login'],
-                $httpData['post']['password']
+                md5($httpData['post']['password'] . Config::SALT)
             );
 
         if (empty($kod)) {
