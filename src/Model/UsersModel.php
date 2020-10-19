@@ -37,4 +37,14 @@ class UsersModel extends DbEntity
     {
         return $this->runSQL("SELECT `id` FROM `group` where `cod` = '$cod'")[0]['id'];
     }
+    public function getanswer()
+    {
+        return $this
+            ->reset()
+            ->setSelect('`reviews`.`text`,`reviews`.`user_name`,`reviews`.`photo`,`answer`.`answer` ')
+            ->setFrom('`reviews`,`answer`')
+            ->setWhere('`reviews`.`id` = `answer`.`reviews_id`')
+            ->get();
+    }
+    
 }

@@ -2,7 +2,8 @@
     "admin": [],
     "user": [
         "group",
-        "users"
+        "users",
+        "feedBack"
     ],
     "default": [
         "group",

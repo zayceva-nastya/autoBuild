@@ -14,7 +14,7 @@
                 <a class="nav-link" href="?action=show&type=products">Товары</a>
             </li>
             <li class="nav-item<?= $controllerType == 'reviews' ? ' active' : '' ?>">
-                <a class="nav-link" href="?action=show&type=reviews">Отзывы</a>
+                <a class="nav-link" href="?action=show2&type=reviews">Отзывы</a>
             </li>
             <li class="nav-item<?= $controllerType == 'auth' ? ' active' : '' ?>">
                 <a class="nav-link" href="?action=loginform&type=auth">Login</a>

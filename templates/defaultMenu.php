@@ -12,6 +12,9 @@
                 <li class="nav-item<?= $controllerType == 'auth' ? ' active' : '' ?>">
                     <a class="nav-link" href="?action=loginform&type=auth">Login</a>
                 </li>
+                <li class="nav-item<?= $controllerType == 'signup' ? ' active' : '' ?>">
+                    <a class="nav-link" href="?action=show&type=signup">registr</a>
+                </li>
                 <span class="navbar-text">
                     <?= !empty($_SESSION['user']) ? $_SESSION['user']['FIO'] . '(' . $_SESSION['user']['name'] . ')' : '' ?>
                 </span>

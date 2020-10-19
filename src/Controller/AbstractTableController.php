@@ -42,6 +42,7 @@ abstract class AbstractTableController extends AbstractController implements CRU
         // unset($fields['id']);
         // echo $this->getClassName();
         //        $fields = array_diff($this->table->getFields(), ['id']);
+        // print_r($data);
 
         $this
             ->view

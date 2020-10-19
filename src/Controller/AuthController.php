@@ -41,12 +41,13 @@ class AuthController extends AbstractController
 
     public function actionLogin($httpData): void
     {
-
+// print_r($httpData);
         $kod = $this
             ->table
             ->checkUser(
                 $httpData['post']['login'],
-                md5($httpData['post']['password'] . Config::SALT)
+                $httpData['post']['password']
+                // md5($httpData['post']['password'] . Config::SALT)
             );
 
         if (empty($kod)) {
